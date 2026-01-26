@@ -16,14 +16,26 @@ class Evaluation(BaseModel):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("posting_directory")
+    parser.add_argument("posting_directory", help="Directory containing the job postings")
+    parser.add_argument(
+        "candidate_directory", 
+        nargs='?', 
+        help="Directory containing candidate resumes (defaults to posting_directory if omitted)"
+    )
+
     args = parser.parse_args()
 
+    # Logic to handle the optional argument
+    if args.candidate_directory is None:
+        args.candidate_directory = args.posting_directory
+
+    print(f"Postings in: {args.posting_directory}")
+    print(f"Candidates in: {args.candidate_directory}")
     client = genai.Client()
-    directory = os.path.dirname(args.posting_directory)
-    questions_path = os.path.join(directory, "questions.json")
-    posting_path = os.path.join(directory, "posting.txt")
-    resume_path = os.path.join(directory, "resume.md")
+    directory = os.path.dirname()
+    questions_path = os.path.join(args.posting_directory, "questions.json")
+    posting_path = os.path.join(args.posting_directory, "posting.txt")
+    resume_path = os.path.join(args.candidate_directory, "resume.md")
 
     # Load All Inputs
     with open(questions_path, "r") as f: questions_json = f.read()
@@ -47,7 +59,7 @@ def main():
         config={'response_mime_type': 'application/json', 'response_schema': list[Evaluation]}
     )
 
-    final_path = os.path.join(directory, "candidate_evaluation.json")
+    final_path = os.path.join(args.candidate_directory, "candidate_evaluation.json")
     with open(final_path, "w") as f:
         json.dump(json.loads(response.text), f, indent=4)
 
