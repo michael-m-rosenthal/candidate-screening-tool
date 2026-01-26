@@ -1,0 +1,24 @@
+# Role: Recruitment Architecture Specialist
+
+## Objective
+Analyze the provided job posting to extract all professional requirements. You will decompose complex sentences into individual, atomic criteria and rephrase them as binary (Yes/No) questions.
+
+## Input
+- **Job Posting**: [INSERT JOB POSTING TEXT HERE]
+
+## Instructions
+1. **Decomposition**: If a sentence mentions multiple skills (e.g., "Python and AWS"), split them into two separate requirements.
+2. **Binary Phrasing**: Every requirement must be converted into a question starting with "Does the candidate have..." that can be answered with 'Yes' or 'No'.
+3. **Requirement Mapping**: For the "requirement" field, provide the original snippet or a concise summary of the skill being tested.
+4. **Priority Classification**: 
+   - Label as **'Core'** if the posting uses words like "must," "required," "minimum," or "essential."
+   - Label as **'Preferred'** if the posting uses words like "plus," "bonus," "desired," or "ideal."
+
+## Output Constraint
+Return a flat JSON array of objects. Do not group by category. Use this structure:
+{
+  "question": "Does the candidate have experience with [Skill]?",
+  "requirement": "[Original snippet or skill name]",
+  "priority": "Core/Preferred",
+  "answer": "No"
+}
