@@ -20,7 +20,7 @@ Filters out "compliance postings" or internal-only roles before you waste time a
 ### Phase 1: Candidate Evaluation
 Audits a specific candidate against a validated job posting.
 * **agent1_1.py (Requirement Extractor)**: Normalizes the `posting.txt` into a structured `questions.json` rubric.
-* **agent2.py (Evidence Auditor)**: Cross-references `resume.md` against the rubric, assessing evidence strength (Strong/Moderate/Weak).
+* **agent1_2.py (Evidence Auditor)**: Cross-references `resume.md` against the rubric, assessing evidence strength (Strong/Moderate/Weak).
 * **agent1_3.py (Executive Synthesizer)**: Aggregates audit data into the final `executive_summary.md` report.
 
 
