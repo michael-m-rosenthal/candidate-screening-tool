@@ -21,8 +21,6 @@ def main():
     )
     args = parser.parse_args()
 
-    client = genai.Client()
-    
     # Using abspath for reliability
     base_posting_dir = os.path.abspath(args.posting_directory)
     base_candidate_dir = os.path.abspath(args.candidate_directory)
@@ -30,6 +28,19 @@ def main():
     # Get candidate name from the folder name
     candidate_name = os.path.basename(base_candidate_dir)
 
+    # Output path setup for skip check
+    summary_output_dir = os.path.join(base_posting_dir, "summaries")
+    final_filename = f"{candidate_name}_summary.md"
+    output_path = os.path.join(summary_output_dir, final_filename)
+
+    # --- SKIP LOGIC ---
+    if os.path.exists(output_path):
+        print(f"Agent 1_3: Skip - {output_path} already exists.")
+        return 
+    # ------------------
+
+    client = genai.Client()
+    
     # Input logic: Look in posting_dir/evaluations/candidate_name_evaluation.json
     evaluation_path = os.path.join(base_posting_dir, "evaluations", f"{candidate_name}_evaluation.json")
     prompt_path = "prompts/executive-summary-prompt.txt"
@@ -58,8 +69,8 @@ def main():
 
     try:
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            #model="gemini-3-flash-preview",
+            #model="gemini-2.5-flash",
+            model="gemini-3-flash-preview",
             contents=full_request,
             config={
                 'response_mime_type': 'application/json', 
@@ -70,14 +81,10 @@ def main():
         # Parse result
         result = json.loads(response.text)
         
-        # Setup the output sub-directory within the posting directory
-        summary_output_dir = os.path.join(base_posting_dir, "summaries")
+        # Ensure the output sub-directory exists
         os.makedirs(summary_output_dir, exist_ok=True)
 
         # Save as Markdown file in the summaries directory with unique name
-        final_filename = f"{candidate_name}_summary.md"
-        output_path = os.path.join(summary_output_dir, final_filename)
-        
         with open(output_path, "w") as f:
             f.write(result['markdown_content'])
 

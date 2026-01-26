@@ -1,0 +1,121 @@
+[
+    {
+        "category": "Hyper-Specificity",
+        "question": "Does the posting require a specific combination of unrelated niche tools?",
+        "answer": "No",
+        "evidence": "The posting lists standard industry tools such as Python, SQL, AWS, and C++.",
+        "risk_level": "High"
+    },
+    {
+        "category": "Hyper-Specificity",
+        "question": "Is there a requirement for 'internal knowledge' of specific company processes?",
+        "answer": "No",
+        "evidence": "No mention of internal company processes or workflows is present in the requirements.",
+        "risk_level": "High"
+    },
+    {
+        "category": "Hyper-Specificity",
+        "question": "Does the posting name proprietary software or project codes not available to the public?",
+        "answer": "No",
+        "evidence": "No specific internal project names or proprietary software codes are cited.",
+        "risk_level": "High"
+    },
+    {
+        "category": "Hyper-Specificity",
+        "question": "Does the experience requirement exceed the age of the technology mentioned?",
+        "answer": "No",
+        "evidence": "No specific years-of-experience requirements are mentioned for the technologies listed.",
+        "risk_level": "Medium"
+    },
+    {
+        "category": "Compliance",
+        "question": "Is the application deadline less than 7 days from the posting date?",
+        "answer": "No",
+        "evidence": "No application deadline is provided in the simulation data.",
+        "risk_level": "High"
+    },
+    {
+        "category": "Compliance",
+        "question": "Does the text explicitly state that internal candidates are currently being considered?",
+        "answer": "No",
+        "evidence": "There is no mention of internal candidates or priority hiring for existing employees.",
+        "risk_level": "High"
+    },
+    {
+        "category": "Compliance",
+        "question": "Is the job description unusually short (e.g., under 150 words)?",
+        "answer": "Yes",
+        "evidence": "The core descriptive text under Purpose and Simulation Context sections is approximately 120 words.",
+        "risk_level": "Medium"
+    },
+    {
+        "category": "Compliance",
+        "question": "Does the posting lack a 'Company Culture' or 'About Us' section?",
+        "answer": "Yes",
+        "evidence": "The posting lacks a traditional 'About Us' section, replacing it with simulation metadata and a purpose statement for a dataset.",
+        "risk_level": "Medium"
+    },
+    {
+        "category": "Insider Language",
+        "question": "Does the posting use more than 3 company-specific acronyms without defining them?",
+        "answer": "No",
+        "evidence": "Only 'VLS' is used as a company-specific acronym.",
+        "risk_level": "Medium"
+    },
+    {
+        "category": "Insider Language",
+        "question": "Does the 'Reporting To' section use internal grade or leveling codes?",
+        "answer": "No",
+        "evidence": "The posting does not include a 'Reporting To' section or internal leveling codes.",
+        "risk_level": "High"
+    },
+    {
+        "category": "Insider Language",
+        "question": "Is the tone primarily bureaucratic or dry, resembling an internal HR manual?",
+        "answer": "No",
+        "evidence": "The tone is academic and technical, specifically designed for testing a data pipeline.",
+        "risk_level": "Medium"
+    },
+    {
+        "category": "Transparency",
+        "question": "Is a salary range completely absent?",
+        "answer": "Yes",
+        "evidence": "No salary information or compensation range is provided in the posting.",
+        "risk_level": "Medium"
+    },
+    {
+        "category": "Transparency",
+        "question": "Is the provided salary range wider than 50% of the minimum value?",
+        "answer": "No",
+        "evidence": "No salary range is provided to evaluate width.",
+        "risk_level": "Medium"
+    },
+    {
+        "category": "Transparency",
+        "question": "Does the posting use 'salary commensurate with experience' without a baseline?",
+        "answer": "No",
+        "evidence": "The posting does not mention salary or use the phrase 'salary commensurate with experience'.",
+        "risk_level": "Low"
+    },
+    {
+        "category": "Ghost Job",
+        "question": "Was the job first posted more than 60 days ago and recently 'refreshed'?",
+        "answer": "No",
+        "evidence": "No posting dates or refresh history are provided in the simulation data.",
+        "risk_level": "High"
+    },
+    {
+        "category": "Ghost Job",
+        "question": "Does the language imply this is an 'Evergreen' or general talent pipeline posting?",
+        "answer": "Yes",
+        "evidence": "The text states: 'This folder serves as a benchmark... It is designed to test the pipeline's ability to...'",
+        "risk_level": "High"
+    },
+    {
+        "category": "Ghost Job",
+        "question": "Is the job missing from the official company career site but appearing on third-party boards?",
+        "answer": "Yes",
+        "evidence": "The disclaimer states: 'This job posting, company, and associated data are entirely IMAGINARY. Vertex Ledger Solutions (VLS) does not exist.'",
+        "risk_level": "Medium"
+    }
+]

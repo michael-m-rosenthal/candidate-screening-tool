@@ -1,0 +1,66 @@
+[
+    {
+        "question": "Does the candidate have experience with Python?",
+        "requirement": "Identify high-frequency keywords like Python",
+        "priority": "Core",
+        "answer": "Yes",
+        "evidence_strength": "Strong",
+        "justification": "Candidate engineered a Python-based ingestion engine that processed 500M+ daily transactions at Simulated FinTech Corp and used Python-driven automation at a previous role."
+    },
+    {
+        "question": "Does the candidate have experience with SQL?",
+        "requirement": "Identify high-frequency keywords like SQL",
+        "priority": "Core",
+        "answer": "Yes",
+        "evidence_strength": "Strong",
+        "justification": "The resume lists 'SQL (PostgreSQL)' in core competencies and notes a specific achievement: 'Achieved a 40% improvement in processing speed through PostgreSQL query optimization.'"
+    },
+    {
+        "question": "Does the candidate have experience with AWS?",
+        "requirement": "Identify high-frequency keywords like AWS",
+        "priority": "Core",
+        "answer": "Yes",
+        "evidence_strength": "Strong",
+        "justification": "Candidate is an 'AWS Certified Solutions Architect' and specifically 'Optimized AWS Glue and S3 configurations to handle legacy flat-file migrations.'"
+    },
+    {
+        "question": "Does the candidate have experience with C++?",
+        "requirement": "background in C++",
+        "priority": "Core",
+        "answer": "Yes",
+        "evidence_strength": "Strong",
+        "justification": "Candidate 'Maintained legacy C++ middleware for real-time inventory tracking' for a period of over three years (2016-2019) at Fictional Logistics Hub."
+    },
+    {
+        "question": "Does the candidate have experience with modernization of systems?",
+        "requirement": "modernization translates to a FinTech context",
+        "priority": "Core",
+        "answer": "Yes",
+        "evidence_strength": "Strong",
+        "justification": "Candidate 'Specializes in migrating legacy workloads to cloud-native architectures' and developed RESTful APIs to 'translate legacy database records for modern web consumption.'"
+    },
+    {
+        "question": "Does the candidate have domain expertise in FinTech?",
+        "requirement": "domain expertise",
+        "priority": "Core",
+        "answer": "Yes",
+        "evidence_strength": "Strong",
+        "justification": "Candidate has been a Senior Software Engineer at 'Simulated FinTech Corp' since January 2020, focusing on high-throughput transaction processing."
+    },
+    {
+        "question": "Does the candidate have experience prioritizing system reliability?",
+        "requirement": "prioritize reliability",
+        "priority": "Core",
+        "answer": "Yes",
+        "evidence_strength": "Moderate",
+        "justification": "While 'reliability' is not explicitly mentioned, the candidate demonstrates it through the management of high-throughput pipelines (500M+ transactions) and 'Data Validation' skills."
+    },
+    {
+        "question": "Does the candidate have experience prioritizing code maintainability?",
+        "requirement": "prioritize... code maintainability",
+        "priority": "Core",
+        "answer": "Yes",
+        "evidence_strength": "Moderate",
+        "justification": "The candidate 'Expanded unit testing coverage from 20% to 85% using PyTest,' which is a direct metric for ensuring code maintainability."
+    }
+]

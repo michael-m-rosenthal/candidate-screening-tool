@@ -1,49 +1,49 @@
 [
     {
         "question": "Does the candidate have experience with Python?",
-        "requirement": "Python",
+        "requirement": "Identify high-frequency keywords like Python",
         "priority": "Core",
         "answer": "No"
     },
     {
         "question": "Does the candidate have experience with SQL?",
-        "requirement": "SQL",
+        "requirement": "Identify high-frequency keywords like SQL",
         "priority": "Core",
         "answer": "No"
     },
     {
         "question": "Does the candidate have experience with AWS?",
-        "requirement": "AWS",
+        "requirement": "Identify high-frequency keywords like AWS",
         "priority": "Core",
         "answer": "No"
     },
     {
-        "question": "Does the candidate have a background in C++?",
-        "requirement": "C++",
-        "priority": "Preferred",
-        "answer": "No"
-    },
-    {
-        "question": "Does the candidate have experience with modernization?",
-        "requirement": "modernization",
-        "priority": "Preferred",
-        "answer": "No"
-    },
-    {
-        "question": "Does the candidate prioritize reliability?",
-        "requirement": "reliability",
+        "question": "Does the candidate have experience with C++?",
+        "requirement": "background in C++",
         "priority": "Core",
         "answer": "No"
     },
     {
-        "question": "Does the candidate prioritize code maintainability?",
-        "requirement": "code maintainability",
+        "question": "Does the candidate have experience with modernization of systems?",
+        "requirement": "modernization translates to a FinTech context",
         "priority": "Core",
         "answer": "No"
     },
     {
         "question": "Does the candidate have domain expertise in FinTech?",
         "requirement": "domain expertise",
+        "priority": "Core",
+        "answer": "No"
+    },
+    {
+        "question": "Does the candidate have experience prioritizing system reliability?",
+        "requirement": "prioritize reliability",
+        "priority": "Core",
+        "answer": "No"
+    },
+    {
+        "question": "Does the candidate have experience prioritizing code maintainability?",
+        "requirement": "prioritize... code maintainability",
         "priority": "Core",
         "answer": "No"
     }

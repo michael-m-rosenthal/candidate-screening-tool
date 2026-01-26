@@ -16,17 +16,22 @@ class ScreeningResult(BaseModel):
 
 def main():
     parser = argparse.ArgumentParser(description="Screen a job posting for red flags.")
-    #parser.add_argument("posting_path", help="Path to the posting.txt file")
     parser.add_argument("posting_directory")
     args = parser.parse_args()
 
-    client = genai.Client()
-
     # Path Setup
-    
     posting_path = os.path.join(args.posting_directory, "posting.txt")
     base_dir = os.path.dirname(posting_path)
-    
+    output_path = os.path.join(base_dir, "screening_report.json")
+
+    # --- SKIP LOGIC ---
+    if os.path.exists(output_path):
+        print(f"Agent 0_1: Skip - {output_path} already exists.")
+        return 
+    # ------------------
+
+    client = genai.Client()
+
     # Assume prompts directory is in the current working directory
     prompts_dir = os.path.join(os.getcwd(), "prompts")
     master_questions_path = os.path.join(prompts_dir, "screening_questions_master.json")
@@ -55,8 +60,8 @@ def main():
 
     try:
         response = client.models.generate_content(
-            #model="gemini-3-flash-preview",
-            model="gemini-2.5-flash",
+            #model="gemini-2.5-flash",
+            model="gemini-3-flash-preview",
             contents=full_request,
             config={
                 'response_mime_type': 'application/json',
@@ -67,7 +72,6 @@ def main():
         results = json.loads(response.text)
         
         # Save output in the SAME directory as the posting.txt
-        output_path = os.path.join(base_dir, "screening_report.json")
         with open(output_path, "w") as f:
             json.dump(results, f, indent=4)
 

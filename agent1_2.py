@@ -24,6 +24,18 @@ def main():
     base_posting_dir = os.path.abspath(args.posting_directory)
     base_candidate_dir = os.path.abspath(args.candidate_directory)
 
+    # Define unique output path for skip check
+    candidate_name = os.path.basename(base_candidate_dir)
+    eval_output_dir = os.path.join(base_posting_dir, "evaluations")
+    final_filename = f"{candidate_name}_evaluation.json"
+    final_path = os.path.join(eval_output_dir, final_filename)
+
+    # --- SKIP LOGIC ---
+    if os.path.exists(final_path):
+        print(f"Agent 1_2: Skip - {final_path} already exists.")
+        return 
+    # ------------------
+
     client = genai.Client()
     
     # Define file paths
@@ -55,8 +67,8 @@ def main():
 
     try:
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            #model="gemini-3-flash-preview",
+            #model="gemini-2.5-flash",
+            model="gemini-3-flash-preview",
             contents=full_request,
             config={
                 'response_mime_type': 'application/json', 
@@ -64,16 +76,8 @@ def main():
             }
         )
 
-        # Setup the sub-directory within the posting directory
-        eval_output_dir = os.path.join(base_posting_dir, "evaluations")
+        # Ensure the sub-directory exists before saving
         os.makedirs(eval_output_dir, exist_ok=True)
-
-        # Get unique candidate name from folder
-        candidate_name = os.path.basename(base_candidate_dir)
-        
-        # Save to the evaluations sub-directory
-        final_filename = f"{candidate_name}_evaluation.json"
-        final_path = os.path.join(eval_output_dir, final_filename)
         
         with open(final_path, "w") as f:
             json.dump(json.loads(response.text), f, indent=4)

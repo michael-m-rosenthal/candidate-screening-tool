@@ -16,24 +16,35 @@ def main():
     parser.add_argument("posting_directory")
     args = parser.parse_args()
 
-    client = genai.Client()
-
     # Path Setup
     posting_path = os.path.join(args.posting_directory, "posting.txt")
     base_dir = os.path.dirname(posting_path)
+    output_path = os.path.join(base_dir, "screening_summary.md")
+
+    # --- SKIP LOGIC ---
+    if os.path.exists(output_path):
+        print(f"Agent 0_2: Skip - {output_path} already exists.")
+        return 
+    # ------------------
+
+    client = genai.Client()
+
     report_path = os.path.join(base_dir, "screening_report.json")
-    
     prompts_dir = os.path.join(os.getcwd(), "prompts")
     prompt_template_path = os.path.join(prompts_dir, "screening-summary-prompt.txt")
 
     if not os.path.exists(report_path):
-        print(f"Error: {report_path} not found. Run Agent 0 first.")
+        print(f"Error: {report_path} not found. Run Agent 0_1 first.")
         sys.exit(1)
 
-    with open(report_path, "r") as f:
-        report_data = f.read()
-    with open(prompt_template_path, "r") as f:
-        prompt_template = f.read()
+    try:
+        with open(report_path, "r") as f:
+            report_data = f.read()
+        with open(prompt_template_path, "r") as f:
+            prompt_template = f.read()
+    except FileNotFoundError as e:
+        print(f"Error: Required file not found: {e}")
+        sys.exit(1)
 
     print(f"Agent 0_2: Summarizing screening for {base_dir}...")
 
@@ -42,22 +53,27 @@ def main():
         f"### SCREENING DATA:\n{report_data}"
     )
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        #model="gemini-3-flash-preview",
-        contents=full_request,
-        config={
-            'response_mime_type': 'application/json',
-            'response_schema': ScreeningSummary
-        }
-    )
-    
-    result = json.loads(response.text)
-    output_path = os.path.join(base_dir, "screening_summary.md")
-    with open(output_path, "w") as f:
-        f.write(result['markdown_content'])
+    try:
+        response = client.models.generate_content(
+            #model="gemini-2.5-flash",
+            model="gemini-3-flash-preview",
+            contents=full_request,
+            config={
+                'response_mime_type': 'application/json',
+                'response_schema': ScreeningSummary
+            }
+        )
+        
+        result = json.loads(response.text)
+        
+        with open(output_path, "w") as f:
+            f.write(result['markdown_content'])
 
-    print(f"Success! Markdown verdict saved to: {output_path}")
+        print(f"Success! Markdown verdict saved to: {output_path}")
+
+    except Exception as e:
+        print(f"Error during API call: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
