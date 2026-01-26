@@ -2,6 +2,18 @@
 
 An automated, multi-agent system designed to perform evidence-based audits of technical resumes against complex job requirements. This pipeline leverages Large Language Models (LLMs) to bridge the gap between unstructured human-readable documents and structured career data.
 
+## 🛠 Author’s Note on AI Collaboration
+
+**Disclosed Use of Generative AI:** Much of the boilerplate logic, Pydantic schemas, and CLI argument parsing in this repository were generated in collaboration with **Google Gemini (Gemini 2.0 Flash)**.
+
+**Verification Statement:** The author of this repository is a proficient Python developer and has:
+
+* **Architected the logic flow** and multi-agent interaction strategy.
+* **Thoroughly reviewed** all AI-generated code for security, efficiency, and PEP 8 compliance.
+* **Vigorously tested** the pipeline against real-world data to ensure functional reliability.
+
+The AI was utilized as a high-velocity pair-programmer to reduce boilerplate overhead, allowing the author to focus on the mathematical rigor and system design.
+
 ## 🛠 Pipeline Architecture
 
 The system is decomposed into three specialized agents to ensure auditability, consistency, and scalability.
@@ -109,3 +121,8 @@ Unlike the older `google-generativeai` library, the newer `google-genai` SDK (us
 ### Next Step
 
 Now that your environment is ready, would you like me to provide the **questions.json** for the VLS directory so you can perform a test run of the full pipeline?
+
+
+
+
+
