@@ -118,11 +118,22 @@ export GOOGLE_API_KEY='your_api_key_here'
 
 Unlike the older `google-generativeai` library, the newer `google-genai` SDK (used in your scripts) provides native support for **Pydantic models** in the `response_schema`. This is what allows **Agent 2** to return a strictly formatted list of evaluations that your code can parse immediately into a JSON file without manual string cleaning.
 
-### Next Step
 
-Now that your environment is ready, would you like me to provide the **questions.json** for the VLS directory so you can perform a test run of the full pipeline?
+## ⚖️ Legal Disclaimer & License
 
+### 1. Personal Use Disclosure
 
+The author primarily uses this tool as a **self-assessment utility** to determine personal alignment with specific job requirements before initiating a formal application. It is designed to evaluate technical "fit" and reduce the noise in the career search process.
 
+### 2. No Liability & "As-Is" Clause
 
+This software is provided **"as-is"**, without warranty of any kind, express or implied. In no event shall the author be held liable for any claim, damages, or other liability arising from the use of this software.
+
+### 3. Ethical Use & Compliance Warning
+
+**The use of this tool for the screening or automated rejection of third-party candidates is strictly at the user's own risk.**
+
+* Users are solely responsible for ensuring that their implementation complies with local, state, and federal labor laws (e.g., **EEOC**, **GDPR**, and the **AI Act**).
+* This tool is not intended to, and should not be used to, screen candidates based on protected characteristics including, but not limited to, **age, gender, race, religion, or disability status**.
+* The author disclaims all responsibility for any discriminatory outcomes resulting from the misuse of these scripts or the underlying LLM models.
 
