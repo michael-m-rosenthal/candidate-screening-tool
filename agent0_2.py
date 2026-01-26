@@ -35,7 +35,7 @@ def main():
     with open(prompt_template_path, "r") as f:
         prompt_template = f.read()
 
-    print(f"Agent 0.5: Summarizing screening for {base_dir}...")
+    print(f"Agent 0_2: Summarizing screening for {base_dir}...")
 
     full_request = (
         f"{prompt_template}\n\n"

@@ -28,7 +28,7 @@ def main():
     with open(posting_path, "r") as f:
         posting = f.read()
 
-    print(f"Agent 1: Extracting requirements from {posting_path}...")
+    print(f"Agent 1_1: Extracting requirements from {posting_path}...")
     
     response = client.models.generate_content(
         model="gemini-2.5-flash",

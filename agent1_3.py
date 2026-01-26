@@ -50,7 +50,7 @@ def main():
     with open(prompt_path, "r") as f: 
         prompt_template = f.read()
 
-    print(f"Agent 3: Synthesizing Markdown summary...")
+    print(f"Agent 1_3: Synthesizing Markdown summary...")
     print(f"  Postings:  {base_posting_dir}")
     print(f"  Candidate: {base_candidate_dir}")
 

@@ -44,7 +44,7 @@ def main():
         print(f"Error: Required file not found: {e}")
         sys.exit(1)
 
-    print(f"Agent 0: Screening {posting_path} using master criteria...")
+    print(f"Agent 0_1: Screening {posting_path} using master criteria...")
 
     # Construct the request with the JSON questions injected
     full_request = (

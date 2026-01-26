@@ -51,7 +51,7 @@ def main():
     with open(posting_path, "r") as f: posting_text = f.read()
     with open(prompt_path, "r") as f: prompt_template = f.read()
 
-    print(f"Agent 2: Auditing resume at {resume_path} against {base_posting_dir}...")
+    print(f"Agent 1_2: Auditing resume at {resume_path} against {base_posting_dir}...")
 
     full_request = (
         f"{prompt_template}\n\n"
