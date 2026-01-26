@@ -112,12 +112,6 @@ export GOOGLE_API_KEY='your_api_key_here'
 
 ```
 
----
-
-### Why we use `google-genai`
-
-Unlike the older `google-generativeai` library, the newer `google-genai` SDK (used in your scripts) provides native support for **Pydantic models** in the `response_schema`. This is what allows **Agent 2** to return a strictly formatted list of evaluations that your code can parse immediately into a JSON file without manual string cleaning.
-
 
 ## ⚖️ Legal Disclaimer & License
 

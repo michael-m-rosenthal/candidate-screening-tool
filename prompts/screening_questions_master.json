@@ -1,0 +1,87 @@
+[
+  {
+    "category": "Hyper-Specificity",
+    "question": "Does the posting require a specific combination of unrelated niche tools?",
+    "risk_level": "High"
+  },
+  {
+    "category": "Hyper-Specificity",
+    "question": "Is there a requirement for 'internal knowledge' of specific company processes?",
+    "risk_level": "High"
+  },
+  {
+    "category": "Hyper-Specificity",
+    "question": "Does the posting name proprietary software or project codes not available to the public?",
+    "risk_level": "High"
+  },
+  {
+    "category": "Hyper-Specificity",
+    "question": "Does the experience requirement exceed the age of the technology mentioned?",
+    "risk_level": "Medium"
+  },
+  {
+    "category": "Compliance",
+    "question": "Is the application deadline less than 7 days from the posting date?",
+    "risk_level": "High"
+  },
+  {
+    "category": "Compliance",
+    "question": "Does the text explicitly state that internal candidates are currently being considered?",
+    "risk_level": "High"
+  },
+  {
+    "category": "Compliance",
+    "question": "Is the job description unusually short (e.g., under 150 words)?",
+    "risk_level": "Medium"
+  },
+  {
+    "category": "Compliance",
+    "question": "Does the posting lack a 'Company Culture' or 'About Us' section?",
+    "risk_level": "Medium"
+  },
+  {
+    "category": "Insider Language",
+    "question": "Does the posting use more than 3 company-specific acronyms without defining them?",
+    "risk_level": "Medium"
+  },
+  {
+    "category": "Insider Language",
+    "question": "Does the 'Reporting To' section use internal grade or leveling codes?",
+    "risk_level": "High"
+  },
+  {
+    "category": "Insider Language",
+    "question": "Is the tone primarily bureaucratic or dry, resembling an internal HR manual?",
+    "risk_level": "Medium"
+  },
+  {
+    "category": "Transparency",
+    "question": "Is a salary range completely absent?",
+    "risk_level": "Medium"
+  },
+  {
+    "category": "Transparency",
+    "question": "Is the provided salary range wider than 50% of the minimum value?",
+    "risk_level": "Medium"
+  },
+  {
+    "category": "Transparency",
+    "question": "Does the posting use 'salary commensurate with experience' without a baseline?",
+    "risk_level": "Low"
+  },
+  {
+    "category": "Ghost Job",
+    "question": "Was the job first posted more than 60 days ago and recently 'refreshed'?",
+    "risk_level": "High"
+  },
+  {
+    "category": "Ghost Job",
+    "question": "Does the language imply this is an 'Evergreen' or general talent pipeline posting?",
+    "risk_level": "High"
+  },
+  {
+    "category": "Ghost Job",
+    "question": "Is the job missing from the official company career site but appearing on third-party boards?",
+    "risk_level": "Medium"
+  }
+]
