@@ -1,3 +1,6 @@
+Here is the updated **README.md** incorporating the automation logic with `orchestrate.sh`. I have added the **Automation with Orchestrator** section including the setup and execution instructions.
+
+```markdown
 # Resume Intelligence Pipeline
 
 An automated, multi-agent system designed to perform evidence-based audits of technical resumes against complex job requirements, while filtering out "ghost jobs" and internal-only postings. This pipeline leverages Large Language Models (LLMs) to bridge the gap between unstructured human-readable documents and structured career data.
@@ -23,8 +26,6 @@ Audits a specific candidate against a validated job posting.
 * **agent1_2.py (Evidence Auditor)**: Cross-references `resume.md` against the rubric, assessing evidence strength (Strong/Moderate/Weak).
 * **agent1_3.py (Executive Synthesizer)**: Aggregates audit data into the final `executive_summary.md` report.
 
-
-
 ## 📂 Directory Structure
 The pipeline utilizes a decoupled directory strategy, allowing for a 1-to-many relationship between job postings and candidates.
 
@@ -47,9 +48,11 @@ The pipeline utilizes a decoupled directory strategy, allowing for a 1-to-many r
 
 ## 🚀 Usage
 
-### 1. Initial Screening (Phase 0)
+### 1. Manual Execution
 
-Check if the job is a legitimate opportunity. These scripts only require the posting directory.
+You can run agents individually for granular control:
+
+**Phase 0: Screening**
 
 ```bash
 python agent0_1.py ./postings/senior-eng-vls
@@ -57,27 +60,35 @@ python agent0_2.py ./postings/senior-eng-vls
 
 ```
 
-### 2. Requirement Extraction (Phase 1 Start)
-
-If the screening verdict is **GO**, generate the technical requirements rubric.
+**Phase 1: Evaluation**
 
 ```bash
 python agent1_1.py ./postings/senior-eng-vls
-
-```
-
-### 3. Candidate Audit (Phase 1 Finish)
-
-Evaluate a specific candidate folder against the posting requirements.
-
-```bash
-# Cross-reference resume with requirements
-python agent2.py ./postings/senior-eng-vls ./candidates/alex-chen
-
-# Generate the final human-readable report
+python agent1_2.py ./postings/senior-eng-vls ./candidates/alex-chen
 python agent1_3.py ./postings/senior-eng-vls ./candidates/alex-chen
 
 ```
+
+### 2. Automation with Orchestrator
+
+To process all job postings and all candidates in bulk, use the provided `orchestrate.sh` script.
+
+**Setup Execute Permissions:**
+Before running the script for the first time, you must grant it execution permissions:
+
+```bash
+chmod +x orchestrate.sh
+
+```
+
+**Run the Pipeline:**
+
+```bash
+./orchestrate.sh
+
+```
+
+The script will loop through every `posting.txt` in the `postings/` subdirectories and audit them against every `resume.md` found in the `candidates/` directory.
 
 ## 🧠 Why This System?
 
@@ -99,7 +110,7 @@ pip install -U google-genai pydantic
 
 3. **Configure API Access**:
 ```bash
-export GOOGLE_API_KEY='your_api_key_here'
+export GEMINI_API_KEY='your_api_key_here'
 
 ```
 
@@ -108,4 +119,3 @@ export GOOGLE_API_KEY='your_api_key_here'
 ## ⚖️ Legal Disclaimer & License
 
 This software is provided "as-is", without warranty of any kind. The author primarily uses this tool as a self-assessment utility to determine personal alignment with job requirements. Use of this tool for the screening of third-party candidates is strictly at the user's own risk regarding compliance with local labor laws (e.g., EEOC, GDPR).
-
