@@ -40,7 +40,7 @@ The pipeline utilizes a decoupled directory strategy, allowing for a 1-to-many r
 └── candidates/                 # Evaluation workspace
     └── alex-chen/              # Candidate-specific folder
         ├── resume.md           # Input: The candidate's resume
-        ├── candidate_eval.json # Agent 2 Output
+        ├── candidate_eval.json # Agent 1_2 Output
         └── executive_summary.md# Agent 1_3 Output
 
 ```
@@ -83,7 +83,7 @@ python agent1_3.py ./postings/senior-eng-vls ./candidates/alex-chen
 
 Standard LLM interactions often suffer from "hallucinated fit." This pipeline enforces:
 
-* **Evidence-Based Scoring:** Agent 2 must categorize evidence as Strong, Moderate, or Weak based on documented achievements.
+* **Evidence-Based Scoring:** Agent 1_2 must categorize evidence as Strong, Moderate, or Weak based on documented achievements.
 * **Traceability:** Every "Yes/No" recommendation is backed by a specific justification found in the source text.
 * **Gatekeeping:** Phase 0 prevents wasting resources on roles that are likely already filled internally.
 
