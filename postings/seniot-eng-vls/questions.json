@@ -1,0 +1,50 @@
+[
+    {
+        "question": "Does the candidate have experience with Python?",
+        "requirement": "Python",
+        "priority": "Core",
+        "answer": "No"
+    },
+    {
+        "question": "Does the candidate have experience with SQL?",
+        "requirement": "SQL",
+        "priority": "Core",
+        "answer": "No"
+    },
+    {
+        "question": "Does the candidate have experience with AWS?",
+        "requirement": "AWS",
+        "priority": "Core",
+        "answer": "No"
+    },
+    {
+        "question": "Does the candidate have a background in C++?",
+        "requirement": "C++",
+        "priority": "Preferred",
+        "answer": "No"
+    },
+    {
+        "question": "Does the candidate have experience with modernization?",
+        "requirement": "modernization",
+        "priority": "Preferred",
+        "answer": "No"
+    },
+    {
+        "question": "Does the candidate prioritize reliability?",
+        "requirement": "reliability",
+        "priority": "Core",
+        "answer": "No"
+    },
+    {
+        "question": "Does the candidate prioritize code maintainability?",
+        "requirement": "code maintainability",
+        "priority": "Core",
+        "answer": "No"
+    },
+    {
+        "question": "Does the candidate have domain expertise in FinTech?",
+        "requirement": "domain expertise",
+        "priority": "Core",
+        "answer": "No"
+    }
+]
