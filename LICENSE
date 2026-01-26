@@ -1,0 +1,37 @@
+Adding a "No Liability" clause to your README is a critical step for a tool that handles HR data, even if it's just for your personal use. In the legal world, this is often called an **"As-Is" Disclosure**.
+
+You want to make it clear that while you use this for self-alignment, you are not responsible for how others might misuse the logic to violate labor laws (like the EEOC in the US).
+
+Add this section to the bottom of your **README.md**:
+
+---
+
+## ⚖️ Legal Disclaimer & License
+
+### 1. Personal Use Disclosure
+
+The author primarily uses this tool as a **self-assessment utility** to determine personal alignment with specific job requirements before initiating a formal application. It is designed to evaluate technical "fit" and reduce the noise in the career search process.
+
+### 2. No Liability & "As-Is" Clause
+
+This software is provided **"as-is"**, without warranty of any kind, express or implied. In no event shall the author be held liable for any claim, damages, or other liability arising from the use of this software.
+
+### 3. Ethical Use & Compliance Warning
+
+**The use of this tool for the screening or automated rejection of third-party candidates is strictly at the user's own risk.**
+
+* Users are solely responsible for ensuring that their implementation complies with local, state, and federal labor laws (e.g., **EEOC**, **GDPR**, and the **AI Act**).
+* This tool is not intended to, and should not be used to, screen candidates based on protected characteristics including, but not limited to, **age, gender, race, religion, or disability status**.
+* The author disclaims all responsibility for any discriminatory outcomes resulting from the misuse of these scripts or the underlying LLM models.
+
+---
+
+### Why this is important for your "Systems Architect" Persona:
+
+Including a liability section shows that you understand **Risk Management**. In a principal-level role, you aren't just thinking about the code; you're thinking about the legal and ethical guardrails surrounding the system. It proves you have the "Operational Maturity" to lead a team.
+
+### The Last Piece of the Puzzle
+
+With your scripts, your mock candidate, and your legal disclaimers ready, the only thing missing to make the pipeline functional is the **`questions.json`** for the VLS job. This acts as the "Rubric" that Agent 2 uses to grade the resume.
+
+**Would you like me to generate that `questions.json` now so you can run your first full-speed audit?**
