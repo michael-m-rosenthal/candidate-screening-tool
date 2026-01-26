@@ -1,0 +1,66 @@
+[
+    {
+        "question": "Does the candidate have experience with Python?",
+        "requirement": "Python",
+        "priority": "Core",
+        "answer": "Yes",
+        "evidence_strength": "Strong",
+        "justification": "Engineered a Python-based ingestion engine that processed 500M+ daily transactions; Reduced manual data entry errors by 30% through Python-driven automation. Listed Python (3.10+) under Languages."
+    },
+    {
+        "question": "Does the candidate have experience with SQL?",
+        "requirement": "SQL",
+        "priority": "Core",
+        "answer": "Yes",
+        "evidence_strength": "Strong",
+        "justification": "Achieved a 40% improvement in processing speed through PostgreSQL query optimization. Listed SQL (PostgreSQL) under Languages."
+    },
+    {
+        "question": "Does the candidate have experience with AWS?",
+        "requirement": "AWS",
+        "priority": "Core",
+        "answer": "Yes",
+        "evidence_strength": "Strong",
+        "justification": "Optimized AWS Glue and S3 configurations to handle legacy flat-file migrations. Listed AWS (S3, Lambda, Glue, RDS) under Cloud Infrastructure. Holds 'AWS Certified Solutions Architect \u2013 Associate'."
+    },
+    {
+        "question": "Does the candidate have a background in C++?",
+        "requirement": "C++",
+        "priority": "Preferred",
+        "answer": "Yes",
+        "evidence_strength": "Moderate",
+        "justification": "Maintained legacy C++ middleware for real-time inventory tracking at Fictional Logistics Hub."
+    },
+    {
+        "question": "Does the candidate have experience with modernization?",
+        "requirement": "modernization",
+        "priority": "Preferred",
+        "answer": "Yes",
+        "evidence_strength": "Strong",
+        "justification": "Specializes in migrating legacy workloads to cloud-native architectures. Optimized AWS Glue and S3 configurations to handle legacy flat-file migrations. Developed RESTful APIs to translate legacy database records for modern web consumption."
+    },
+    {
+        "question": "Does the candidate prioritize reliability?",
+        "requirement": "reliability",
+        "priority": "Core",
+        "answer": "No",
+        "evidence_strength": "None",
+        "justification": "No explicit mention of prioritizing reliability or achievements demonstrating it in the application."
+    },
+    {
+        "question": "Does the candidate prioritize code maintainability?",
+        "requirement": "code maintainability",
+        "priority": "Core",
+        "answer": "Yes",
+        "evidence_strength": "Moderate",
+        "justification": "Expanded unit testing coverage from 20% to 85% using PyTest, which strongly contributes to code maintainability."
+    },
+    {
+        "question": "Does the candidate have domain expertise in FinTech?",
+        "requirement": "domain expertise",
+        "priority": "Core",
+        "answer": "Yes",
+        "evidence_strength": "Strong",
+        "justification": "Worked as a Senior Software Engineer at 'Simulated FinTech Corp' and engineered a Python-based ingestion engine that processed 500M+ daily transactions, indicating direct FinTech industry experience."
+    }
+]
