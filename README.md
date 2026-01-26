@@ -68,3 +68,44 @@ Standard LLM interactions often suffer from "hallucinated fit," where the AI cla
 * **Evidence-Based Scoring:** Agent 2 must categorize evidence as `Strong`, `Moderate`, or `Weak` based on documented achievements.
 * **Traceability:** Every "Yes/No" recommendation is backed by a specific justification found in the source text.
 * **Context Preservation:** By maintaining a `posting.txt` context, the agents understand the difference between a "Senior" role at a startup vs. a legacy enterprise firm.
+
+## ⚙️ Installation & Setup
+
+### 1. Prerequisites
+
+* Python 3.10 or higher.
+* A Google Gemini API Key.
+
+### 2. Install Dependencies
+
+The pipeline requires the `google-genai` library and `pydantic` for structured data validation.
+
+```bash
+# Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+
+# Install the required modules
+pip install -U google-genai pydantic
+
+```
+
+### 3. Configure API Access
+
+The agents are configured to initialize the `genai.Client()` using an environment variable.
+
+```bash
+# Add this to your .bashrc, .zshrc, or export it in your current session
+export GOOGLE_API_KEY='your_api_key_here'
+
+```
+
+---
+
+### Why we use `google-genai`
+
+Unlike the older `google-generativeai` library, the newer `google-genai` SDK (used in your scripts) provides native support for **Pydantic models** in the `response_schema`. This is what allows **Agent 2** to return a strictly formatted list of evaluations that your code can parse immediately into a JSON file without manual string cleaning.
+
+### Next Step
+
+Now that your environment is ready, would you like me to provide the **questions.json** for the VLS directory so you can perform a test run of the full pipeline?
