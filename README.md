@@ -1,16 +1,29 @@
-Here is the updated **README.md** incorporating the automation logic with `orchestrate.sh`. I have added the **Automation with Orchestrator** section including the setup and execution instructions.
-
-```markdown
 # Resume Intelligence Pipeline
 
 An automated, multi-agent system designed to perform evidence-based audits of technical resumes against complex job requirements, while filtering out "ghost jobs" and internal-only postings. This pipeline leverages Large Language Models (LLMs) to bridge the gap between unstructured human-readable documents and structured career data.
 
+
+## ⚠️ Project Context & Disclaimer
+
+**This is a "clever poor-man's solution."** Large companies spend millions of dollars on enterprise-grade recruitment platforms that leverage massive LLM context windows to ingest entire resume stacks simultaneously. This project is **not** that.
+
+Instead, this is a modular, agentic pipeline designed to:
+* **Work within the constraints** of smaller, faster, and more cost-effective context windows.
+* **Provide "White-Box" Transparency:** Every decision is backed by a specific evidence trace, unlike the "black-box" scoring of enterprise tools.
+* **Empower the Individual:** Designed for developers who want to audit their own alignment or screen job quality without an enterprise subscription.
+
+**If you require a monolithic, high-volume enterprise solution with a million-token context window, this project may not be for you.**
+
+---
+
 ## 🛠 Author’s Note on AI Collaboration
-**Disclosed Use of Generative AI:** Much of the boilerplate logic, Pydantic schemas, and CLI argument parsing in this repository were generated in collaboration with Google Gemini (Gemini 3 Flash).
-**Verification Statement:** The author of this repository is a proficient developer and has:
-* Architected the logic flow and multi-agent interaction strategy.
+**Disclosed Use of Generative AI:** Much of the boilerplate logic, Pydantic schemas, and CLI argument parsing in this repository were generated in collaboration with Google Gemini (Gemini 2.5 Flash).
+
+**Verification Statement:** This is not "AI-slop." The architecture, logic flow, and multi-agent interaction strategies were manually designed to enforce a strict, evidence-based audit trail that enterprise black-boxes often lack. The author has:
+* Architected the logic flow and multi-agent interaction strategy. 
 * Thoroughly reviewed all AI-generated code for security, efficiency, and PEP 8 compliance.
 * Vigorously tested the pipeline against real-world data to ensure functional reliability.
+
 
 ## 🛠 Pipeline Architecture
 The system is decomposed into two distinct phases to ensure auditability, consistency, and scalability.
@@ -119,3 +132,4 @@ export GEMINI_API_KEY='your_api_key_here'
 ## ⚖️ Legal Disclaimer & License
 
 This software is provided "as-is", without warranty of any kind. The author primarily uses this tool as a self-assessment utility to determine personal alignment with job requirements. Use of this tool for the screening of third-party candidates is strictly at the user's own risk regarding compliance with local labor laws (e.g., EEOC, GDPR).
+
