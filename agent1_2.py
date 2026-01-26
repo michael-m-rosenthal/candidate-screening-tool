@@ -16,20 +16,13 @@ class Evaluation(BaseModel):
 
 def main():
     parser = argparse.ArgumentParser(description="Agent 2: Candidate Evaluator")
-    parser.add_argument("posting_directory", help="Directory containing posting.txt and questions.json")
-    parser.add_argument(
-        "candidate_directory", 
-        nargs='?', 
-        help="Optional: Directory containing resume.md (defaults to posting_directory)"
-    )
+    parser.add_argument("posting_directory", help="Directory containing posting.txt")
+    parser.add_argument("candidate_directory", help="Directory containing resume.md")
     args = parser.parse_args()
 
-    # Fallback logic for optional directory
-    candidate_dir = args.candidate_directory if args.candidate_directory else args.posting_directory
-    
     # Absolute paths for reliability
     base_posting_dir = os.path.abspath(args.posting_directory)
-    base_candidate_dir = os.path.abspath(candidate_dir)
+    base_candidate_dir = os.path.abspath(args.candidate_directory)
 
     client = genai.Client()
     
@@ -71,12 +64,25 @@ def main():
             }
         )
 
-        # Output to the candidate directory
-        final_path = os.path.join(base_candidate_dir, "candidate_evaluation.json")
+        # Setup the sub-directory within the posting directory
+        eval_output_dir = os.path.join(base_posting_dir, "evaluations")
+        os.makedirs(eval_output_dir, exist_ok=True)
+
+        # Get unique candidate name from folder
+        candidate_name = os.path.basename(base_candidate_dir)
+        
+        # Save to the evaluations sub-directory
+        final_filename = f"{candidate_name}_evaluation.json"
+        final_path = os.path.join(eval_output_dir, final_filename)
+        
         with open(final_path, "w") as f:
             json.dump(json.loads(response.text), f, indent=4)
 
         print(f"Success! Evaluation complete: {final_path}")
+
+        # List siblings alphabetically
+        all_evals = sorted([f for f in os.listdir(eval_output_dir) if f.endswith("_evaluation.json")])
+        print(f"All evaluations in {eval_output_dir}: {all_evals}")
 
     except Exception as e:
         print(f"Error during API generation: {e}")

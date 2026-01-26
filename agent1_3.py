@@ -13,31 +13,30 @@ class FitnessSummary(BaseModel):
     markdown_content: str = Field(description="The full executive summary in Markdown format.")
 
 def main():
-    parser = argparse.ArgumentParser(description="Agent 3: Synthesize Executive Summary")
+    parser = argparse.ArgumentParser(description="Agent 1_3: Synthesize Executive Summary")
     parser.add_argument("posting_directory", help="Directory containing the job posting details")
     parser.add_argument(
         "candidate_directory", 
-        nargs='?', 
-        help="Optional: Directory containing candidate evaluation data (defaults to posting_directory)"
+        help="Directory containing the candidate's original resume/context"
     )
     args = parser.parse_args()
-
-    # If candidate_directory is not provided, use posting_directory
-    candidate_dir = args.candidate_directory if args.candidate_directory else args.posting_directory
 
     client = genai.Client()
     
     # Using abspath for reliability
     base_posting_dir = os.path.abspath(args.posting_directory)
-    base_candidate_dir = os.path.abspath(candidate_dir)
+    base_candidate_dir = os.path.abspath(args.candidate_directory)
     
-    # The evaluation data (input) comes from the candidate directory
-    evaluation_path = os.path.join(base_candidate_dir, "candidate_evaluation.json")
+    # Get candidate name from the folder name
+    candidate_name = os.path.basename(base_candidate_dir)
+
+    # Input logic: Look in posting_dir/evaluations/candidate_name_evaluation.json
+    evaluation_path = os.path.join(base_posting_dir, "evaluations", f"{candidate_name}_evaluation.json")
     prompt_path = "prompts/executive-summary-prompt.txt"
 
     # Load Inputs
     if not os.path.exists(evaluation_path):
-        print(f"Error: {evaluation_path} not found. Ensure Agent 2 has run.")
+        print(f"Error: {evaluation_path} not found. Ensure Agent 1_2 has run.")
         sys.exit(1)
 
     with open(evaluation_path, "r") as f: 
@@ -50,9 +49,7 @@ def main():
     with open(prompt_path, "r") as f: 
         prompt_template = f.read()
 
-    print(f"Agent 1_3: Synthesizing Markdown summary...")
-    print(f"  Postings:  {base_posting_dir}")
-    print(f"  Candidate: {base_candidate_dir}")
+    print(f"Agent 1_3: Synthesizing Markdown summary for {candidate_name}...")
 
     full_request = (
         f"{prompt_template}\n\n"
@@ -60,7 +57,6 @@ def main():
     )
 
     try:
-        # Note: Using the model version specified in your snippet
         response = client.models.generate_content(
             model="gemini-2.5-flash",
             #model="gemini-3-flash-preview",
@@ -74,13 +70,23 @@ def main():
         # Parse result
         result = json.loads(response.text)
         
-        # Save as Markdown file in the candidate directory
-        output_path = os.path.join(base_candidate_dir, "executive_summary.md")
+        # Setup the output sub-directory within the posting directory
+        summary_output_dir = os.path.join(base_posting_dir, "summaries")
+        os.makedirs(summary_output_dir, exist_ok=True)
+
+        # Save as Markdown file in the summaries directory with unique name
+        final_filename = f"{candidate_name}_summary.md"
+        output_path = os.path.join(summary_output_dir, final_filename)
+        
         with open(output_path, "w") as f:
             f.write(result['markdown_content'])
 
         print(f"Success! Executive summary written to: {output_path}")
         print(f"Result: {result['recommendation']} ({result['fit_percentage']}%)")
+
+        # List all summaries alphabetically
+        all_summaries = sorted([f for f in os.listdir(summary_output_dir) if f.endswith("_summary.md")])
+        print(f"All summaries in {summary_output_dir}: {all_summaries}")
 
     except Exception as e:
         print(f"Error calling Gemini API: {e}")
