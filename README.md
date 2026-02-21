@@ -1,8 +1,5 @@
 # Resume Intelligence Pipeline
 
-An automated, multi-agent system designed to perform evidence-based audits of technical resumes against complex job requirements, while filtering out "ghost jobs" and internal-only postings. This pipeline leverages Large Language Models (LLMs) to bridge the gap between unstructured human-readable documents and structured career data.
-
-
 ## ⚠️ Project Context & Disclaimer
 
 **This is a "clever poor-man's solution."** Large companies spend millions of dollars on enterprise-grade recruitment platforms that leverage massive LLM context windows to ingest entire resume stacks simultaneously. This project is **not** that.
@@ -17,101 +14,70 @@ Instead, this is a modular, agentic pipeline designed to:
 ---
 
 ## 🛠 Author’s Note on AI Collaboration
-**Disclosed Use of Generative AI:** Much of the boilerplate logic, Pydantic schemas, and CLI argument parsing in this repository were generated in collaboration with Google Gemini (Gemini 2.5 Flash).
+**Disclosed Use of Generative AI:** Much of the boilerplate logic, Pydantic schemas, and CLI argument parsing in this repository were generated in collaboration with Google Gemini (Gemini 3 Flash).
 
 **Verification Statement:** This is not "AI-slop." The architecture, logic flow, and multi-agent interaction strategies were manually designed to enforce a strict, evidence-based audit trail that enterprise black-boxes often lack. The author has:
-* Architected the logic flow and multi-agent interaction strategy. 
+* Architected the logic flow and multi-agent interaction strategy.
 * Thoroughly reviewed all AI-generated code for security, efficiency, and PEP 8 compliance.
 * Vigorously tested the pipeline against real-world data to ensure functional reliability.
 
-
 ## 🛠 Pipeline Architecture
-The system is decomposed into two distinct phases to ensure auditability, consistency, and scalability.
+The system is decomposed into phases to ensure auditability and scalability.
 
 ### Phase 0: Job Quality Screening
-Filters out "compliance postings" or internal-only roles before you waste time applying.
-* **agent0_1.py (Fraud Auditor)**: Checks the `posting.txt` for internal-hire red flags using a master JSON criteria.
-* **agent0_2.py (Futility Summarizer)**: Generates the `screening_summary.md` verdict (GO/NO-GO).
+* **agent0_1.py (Fraud Auditor)**: Checks `posting.txt` for internal-hire red flags.
+* **agent0_2.py (Futility Summarizer)**: Generates the `screening_summary.md` verdict.
 
-### Phase 1: Candidate Evaluation
-Audits a specific candidate against a validated job posting.
-* **agent1_1.py (Requirement Extractor)**: Normalizes the `posting.txt` into a structured `questions.json` rubric.
-* **agent1_2.py (Evidence Auditor)**: Cross-references `resume.md` against the rubric, assessing evidence strength (Strong/Moderate/Weak).
-* **agent1_3.py (Executive Synthesizer)**: Aggregates audit data into the final `executive_summary.md` report.
+### Phase 1: Candidate Evaluation (Standard)
+* **agent1_1.py (Requirement Extractor)**: Normalizes `posting.txt` into `questions.json`.
+* **agent1_2.py (Evidence Auditor)**: Cross-references `resume.md` against the rubric.
+* **agent1_3.py (Executive Synthesizer)**: Aggregates data into `executive_summary.md`.
+
+### Phase 2: Deep Alignment (Experience-Enhanced)
+* **agent2_1.py (Experience Auditor)**: Performs a high-fidelity audit using both `resume.md` and `experiences.md` (STAR format). Output is saved to a sanitized, hierarchy-aware JSON in the candidate's `role_alignments/` folder.
 
 ## 📂 Directory Structure
-The pipeline utilizes a decoupled directory strategy, allowing for a 1-to-many relationship between job postings and candidates.
 
 ```text
 .
-├── prompts/                    # System instructions & Master Question JSONs
-├── postings/                   # Library of standardized job postings
-│   └── senior-eng-vls/         # Job-specific folder
-│       ├── posting.txt         # Input: Raw text of the job
-│       ├── screening_report.json # Agent 0_1 Output
-│       ├── screening_summary.md  # Agent 0_2 Output
-│       └── questions.json      # Agent 1_1 Output
+├── prompts/                    # System instructions & master rubrics
+├── postings/                   # Library of job postings
+│   └── vls/
+│       └── eng/
+│           └── senior-dev/     # Nested job folder
+│               ├── posting.txt
+│               └── questions.json
 └── candidates/                 # Evaluation workspace
     └── alex-chen/              # Candidate-specific folder
-        ├── resume.md           # Input: The candidate's resume
-        ├── candidate_eval.json # Agent 1_2 Output
-        └── executive_summary.md# Agent 1_3 Output
+        ├── resume.md           # Primary Resume
+        ├── experiences.md      # STAR-formatted experiences
+        └── role_alignments/    # Agent 2_1 unique outputs
+            └── alex-chen_vls_eng_senior_dev_role_alignment.json
 
 ```
 
 ## 🚀 Usage
 
-### 1. Manual Execution
+### 1. Automation with Orchestrator
 
-You can run agents individually for granular control:
-
-**Phase 0: Screening**
-
-```bash
-python agent0_1.py ./postings/senior-eng-vls
-python agent0_2.py ./postings/senior-eng-vls
-
-```
-
-**Phase 1: Evaluation**
-
-```bash
-python agent1_1.py ./postings/senior-eng-vls
-python agent1_2.py ./postings/senior-eng-vls ./candidates/alex-chen
-python agent1_3.py ./postings/senior-eng-vls ./candidates/alex-chen
-
-```
-
-### 2. Automation with Orchestrator
-
-To process all job postings and all candidates in bulk, use the provided `orchestrate.sh` script.
-
-**Setup Execute Permissions:**
-Before running the script for the first time, you must grant it execution permissions:
+To run the full suite across all postings and candidates:
 
 ```bash
 chmod +x orchestrate.sh
-
-```
-
-**Run the Pipeline:**
-
-```bash
 ./orchestrate.sh
 
 ```
 
-The script will loop through every `posting.txt` in the `postings/` subdirectories and audit them against every `resume.md` found in the `candidates/` directory.
+### 2. Manual Experience Audit (Agent 2_1)
 
-## 🧠 Why This System?
+To run a deep alignment check for a specific role:
 
-Standard LLM interactions often suffer from "hallucinated fit." This pipeline enforces:
+```bash
+python agent2_1.py ./postings/vls/eng/senior-dev ./candidates/alex-chen
 
-* **Evidence-Based Scoring:** Agent 1_2 must categorize evidence as Strong, Moderate, or Weak based on documented achievements.
-* **Traceability:** Every "Yes/No" recommendation is backed by a specific justification found in the source text.
-* **Gatekeeping:** Phase 0 prevents wasting resources on roles that are likely already filled internally.
+```
 
-## ⚙️ Installation & Setup
+## ⚙️ Installation
 
 1. **Prerequisites**: Python 3.10+ and a Google Gemini API Key.
 2. **Install Dependencies**:
@@ -129,7 +95,6 @@ export GEMINI_API_KEY='your_api_key_here'
 
 
 
-## ⚖️ Legal Disclaimer & License
+## ⚖️ License
 
-This software is provided "as-is", without warranty of any kind. The author primarily uses this tool as a self-assessment utility to determine personal alignment with job requirements. Use of this tool for the screening of third-party candidates is strictly at the user's own risk regarding compliance with local labor laws (e.g., EEOC, GDPR).
-
+This software is provided "as-is" for personal assessment. Use for third-party screening is at the user's own risk regarding labor law compliance.
